@@ -1,10 +1,19 @@
-name : hello-world
+name : hello-world       
 on: push
 jobs:
   first_job:
     runs-on: ubuntu-latest                                                                                  
     steps:
-        - name : print hello
-          run : echo "Hello World"
-        - name : print hello again
-          run : echo "Hello World again"  
+      - name : print hello
+        run : echo "Hello World"
+  second_job:
+      runs-on : ubuntu-latest
+      steps:
+         - name : print hello again
+           run : echo "Hello World again"  
+
+         - name : I will fail 
+           run: exit code 1
+
+         - name : Goodbye
+           run: echo "goodbye"
