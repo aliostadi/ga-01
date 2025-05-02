@@ -1,4 +1,4 @@
-name : hello-world
+name : hello-world       
 on: push
 jobs:
   first_job:
@@ -8,5 +8,3 @@ jobs:
           run : echo "Hello World"
         - name : print hello again
           run : echo "Hello World again"  
- 
-          
