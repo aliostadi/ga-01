@@ -1,0 +1,37 @@
+name: 3 - Simple API call  #Automates calling a public API, saving the data as a CSV file, and pushing the result back to the GitHub repo.
+
+on:
+  push:
+   
+  schedule:
+   - cron: '37 21 * * *' # Run daily at 06:23 UTC
+   - cron: '40 21 * * *'
+  workflow_dispatch:
+
+jobs:
+  fetch_data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout the repository #  ✅ Downloads your GitHub repo into the runner, so the job can access and modify it
+        uses: actions/checkout@v4   #run a predefined action written by GitHub to check out the repository
+      - name: Install jq
+        run: sudo apt-get install jq  # ✅ Install jq to parse and extract data from the JSON response
+
+      - name: Fetch data # this step fetches data from the API and saves it to a file
+        run: | 
+          TIMESTAMP=$(date +%s)  
+          OUTPUT_FILE="stage/${TIMESTAMP}.csv"
+          mkdir -p stage
+          curl -s -H "User-Agent: Chrome/123.0" https://www.sahamyab.com/guest/twiter/list?v=0.1 | jq '.items[] | [.id, .sendTime, .sendTimePersian, .senderName, .senderUsername, .type, .content] | join(",") ' > $OUTPUT_FILE
+          echo "Data saved to $OUTPUT_FILE"
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "ali.ostadiy@gmail.com"
+          git config --local user.name "aliostadi"
+          git add stage/ 
+          git commit -m "Fetch data at $(date)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 🔐 GitHub provides a temporary token so this job can push code
