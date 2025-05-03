@@ -24,8 +24,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --local user.email "fozouni@hotmail.com"
-          git config --local user.name "fozouni"
+          git config --local user.email "ali.ostadiy@gmail.com"
+          git config --local user.name "aliostadi"
           git add stage/
           git commit -m "Fetch data at $(date)"
           git push
