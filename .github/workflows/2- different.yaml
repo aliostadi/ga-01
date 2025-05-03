@@ -1,0 +1,46 @@
+
+# Name of the GitHub Action workflow (appears in GitHub UI)
+name: 2 - different inputs
+
+# Define triggers for the workflow
+on: 
+  # Run this workflow automatically when code is pushed
+  push:
+
+  # Also allow the workflow to be run manually from GitHub's UI
+  workflow_dispatch:
+    inputs:
+      MySQL:
+        required: false       # This input is optional (user doesn't have to select it)
+        type: boolean         # It is a true/false checkbox input
+
+      PostgreSQL:
+        required: false       # Also optional
+        type: boolean         # Another true/false checkbox for PostgreSQL
+
+                
+jobs:
+  fetch-data:  # 👷 Name of the job
+    runs-on: ubuntu-latest  # 🐧 Run on a GitHub-hosted Ubuntu VM (default runner)
+
+    steps:  # 🪜 List of steps (executed in order)
+    
+      - name: MySQL fetch
+        if: ${{ github.event.inputs.MySQL == 'true' }}  # ✅ Run this step only if MySQL checkbox was selected
+        run: echo "I will retrieve data from MySQL"  # 🧪 Simulated task
+
+      - name: PostgreSQL fetch
+        if: ${{ github.event.inputs.PostgreSQL == 'true' }}  # ✅ Run this step only if PostgreSQL checkbox was selected
+        run: echo "I will retrieve data from PostgreSQL."  # 🧪 Simulated task
+
+      - name: Done  # 🎉 This step runs no matter what
+        run: echo "You did it 😎"  # ✅ A final message of success
+
+      - name: Some Log prop.  # 🪵 Diagnostic logging (great for debugging or info)
+        run: |
+          echo "The name of event is = ${{ github.event_name }}"  # 🧾 Shows if it's a push, dispatch, etc.
+          echo "Commit SHA is = ${{ github.sha }}"  # 🔢 Shows the unique commit identifier
+          echo "Runners is = ${{ runner.os }}"  # 💻 Tells you which OS the GitHub runner is using
+
+
+
