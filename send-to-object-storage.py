@@ -20,7 +20,7 @@ def upload_files_from_directory(directory):
             aws_secret_access_key=secret_key
         )
 
-        bucket_name = 'getdatafromgithub110113'
+        bucket_name = 'getdatafromgithub110113new'
         bucket = s3_resource.Bucket(bucket_name)
 
         # Check if the bucket exists
