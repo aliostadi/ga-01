@@ -1,7 +1,7 @@
 name: 4 - Fetch and send data to s3
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: 
 
 jobs:
   fetch_data:
