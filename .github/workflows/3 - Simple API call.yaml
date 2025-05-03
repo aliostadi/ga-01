@@ -4,8 +4,8 @@ on:
   push:
    
   schedule:
-   - cron: '47 21 * * *' # Run daily at 06:23 UTC
-   - cron: '50 21 * * *'
+   - cron: '00 22 * * *' # Run daily at 06:23 UTC
+   - cron: '05 22 * * *'
   workflow_dispatch:
 
 jobs:
