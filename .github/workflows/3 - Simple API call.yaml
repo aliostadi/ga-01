@@ -1,7 +1,7 @@
 name: 3 - Simple API call  #Automates calling a public API, saving the data as a CSV file, and pushing the result back to the GitHub repo.
 
 on:
-  push:
+ # push:
    
   schedule:
    - cron: '00 22 * * *' # Run daily at 06:23 UTC

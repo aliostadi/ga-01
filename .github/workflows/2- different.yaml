@@ -5,7 +5,7 @@ name: 2 - different inputs
 # Define triggers for the workflow
 on: 
   # Run this workflow automatically when code is pushed
-  push:
+  #push:
 
   # Also allow the workflow to be run manually from GitHub's UI
   workflow_dispatch:
