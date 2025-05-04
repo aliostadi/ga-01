@@ -1,0 +1,20 @@
+name: 6- Github API  # we use this method to trigger the workflow from the API call out side of GitHub. 
+#this mrethod is moore accurate than corn job. it triggers the workflow exactly when we call it from the API.
+
+on:
+    repository_dispatch:
+      types: [trigger-fetch-data]  # this is the event that we are going to use to trigger the workflow from the API call.
+ 
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: MySQL fetch
+        run: echo "I will retrieve data from MySQL"
+
+      - name: PostgreSQL fetch
+        run: echo "I will retrieve data from PostgreSQL."
+
+      - name: Done
+        run: echo "Done boy 😎"

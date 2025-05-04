@@ -1,7 +1,7 @@
 name: 5- Fetch and send data to S3-Revised
 
 on:
-  push:   
+  #push:   
   workflow_dispatch:
 
 jobs:
